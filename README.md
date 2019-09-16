@@ -61,3 +61,9 @@ Note: username is email only.
 ```bash
 $ http://localhost:3000/user1@example.com
 ```
+
+#### 3. Time Taken to complete this project
+
+```bash
+7 hours
+```
