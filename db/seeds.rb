@@ -52,3 +52,13 @@ user1.places.create(
 	address: 'New York City',
 	shared_ids: [user4.id, user5.id]
 )
+user2.places.create(
+	title: 'User2 Share',
+	address: 'Westminster, London SW1A 0AA, UK',
+	shared_ids: [user1.id, user3.id]
+)
+user2.places.create(
+	title: 'User2 Public Share',
+	address: 'The Dubai Mall, Dubai, United Arab Emirates',
+	public: true
+)
