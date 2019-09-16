@@ -29,7 +29,7 @@ CREATE USER spp_user WITH PASSWORD 'admin';
 
 ALTER ROLE spp_user WITH CREATEDB Replication;
 ```
-#### OR Add the existing username and password to project database.yml
+#### OR Add the existing postgresql username and password to project database.yml
 
 #### 2. Database setup
 
