@@ -17,7 +17,7 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  host: localhost
+  host: ec2-174-129-27-3.compute-1.amazonaws.com
   port: 5432
   # For details on connection pooling, see rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
@@ -25,16 +25,16 @@ default: &default
 
 development:
   <<: *default
-  database: place-sharing-app_development
+  database: d6u9bn31p2ec1i
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
   # the same name as the operating system user that initialized the database.
-  username: spp_user
+  username: vrgtexgkfapzgr
 
   # The password associated with the postgres role (username).
-  password: admin
+  password: 0dd6c84892b9758b0cda0fa51659690910aab35fde7390dc9ba01bd79218f81f
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
