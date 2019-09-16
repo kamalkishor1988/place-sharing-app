@@ -1,0 +1,4 @@
+<li>
+  <%= link_to place.title, place_path(place) %>
+    shared by <strong><%= place.user.email == current_user.email ? 'You' : place.user.email %></strong>
+</li>

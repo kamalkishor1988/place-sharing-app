@@ -1,0 +1,30 @@
+<div class="container">
+  <nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand" href="/">Place Sharing</a>
+    <form class="form-inline">
+    <% if user_signed_in? %>
+      <p class="font-italic">Logged in as: <%= current_user.email %></p>
+      <div style="padding-left: 10px;">
+        <%= link_to "List Places", places_path, class: 'btn btn-outline-primary' %>
+      </div>
+      <div style="padding-left: 10px;">
+        <%= link_to "Share Location", new_place_path, class: 'btn btn-outline-success' %>
+      </div>
+      <div style="padding-left: 10px;">
+        <%= link_to "List User", users_index_path, class: 'btn btn-outline-primary' %>
+      </div>
+      <div style="padding-left: 10px;">
+        <%= link_to "Logout", destroy_user_session_path, method: :delete, class: 'btn btn-outline-danger' %>
+      </div>
+    <% else %>
+      <a class="btn btn-outline-primary" href="/users/sign_in" role="button">
+        Login
+      </a>
+      <div style="padding-left: 10px;">
+        <a class="btn btn-outline-success" href="/users/sign_up" role="button">
+          Sign Up
+        </a>
+      </div>
+    <% end %>
+    </form>
+</div>

@@ -1,0 +1,20 @@
+<script>
+  $(document).ready(function() {
+    $("#dttb").dataTable();
+  });
+</script>
+<header><h1 class="display-4">Listing Users</h1></header>
+<table id="dttb" class="table table-hover">
+  <thead>
+    <tr>
+      <th> User email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= link_to user.email, edit_user_registration_path %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
