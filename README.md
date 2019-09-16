@@ -45,12 +45,12 @@ bin/rails s
 and go to `localhost:3000`. You should see the login page.
 
 #### Run Test Cases
-# Default: Run all spec files (i.e., those matching spec/**/*_spec.rb)
+Default: Run all spec files (i.e., those matching spec/**/*_spec.rb)
 ```bash
 $ bundle exec rspec
 ```
 
-# Run all spec files in a single directory (recursively)
+Run all spec files in a single directory (recursively)
 ```bash
 $ bundle exec rspec spec/models
 ```
