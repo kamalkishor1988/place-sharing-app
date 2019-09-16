@@ -54,3 +54,10 @@ Run all spec files in a single directory (recursively)
 ```bash
 $ bundle exec rspec spec/models
 ```
+Use user details like username(i.e email) and password from seed file or You can sign up and use those credential to login
+
+#### To get the places which has been shared publically
+Note: username is email only.
+```bash
+$ http://localhost:3000/user1@example.com
+```
