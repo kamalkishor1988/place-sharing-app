@@ -1,26 +1,45 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Place Sharing App dev setup
 
-Things you may want to cover:
+# Ruby version
+```
+ruby 2.4.1p111 (2017-03-22 revision 58053) [x86_64-darwin17]
+```
 
-* Ruby version
+#### 1. Add new user for PostgreSQL
 
-* System dependencies
+```bash
+sudo adduser spp_user
+```
+and give UNIX password as admin.
 
-* Configuration
+Create a corresponding user in postgres and set the password there:
 
-* Database creation
+```bash
+su postgres
 
-* Database initialization
+psql template1
+```
 
-* How to run the test suite
+`psql` command will take you to postgres console. Following commands to be run there:
 
-* Services (job queues, cache servers, search engines, etc.)
+```sql
+CREATE USER spp_user WITH PASSWORD 'admin';
 
-* Deployment instructions
+ALTER ROLE spp_user WITH CREATEDB Replication;
+```
+#### OR Add the existing username and password to project database.yml
 
-* ...
-# place-sharing-app
-# place-sharing-app
+#### 4. Database setup
+
+```bash
+rake db:drop && rake db:create && rake db:migrate && rake db:seed && rake db:test:prepare
+```
+
+#### 8. Start rails server
+
+```bash
+bin/rails s
+```
+and go to `localhost:3000`. You should see the login page.
