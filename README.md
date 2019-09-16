@@ -31,20 +31,20 @@ ALTER ROLE spp_user WITH CREATEDB Replication;
 ```
 #### OR Add the existing username and password to project database.yml
 
-#### 4. Database setup
+#### 2. Database setup
 
 ```bash
 rake db:drop && rake db:create && rake db:migrate && rake db:seed && rake db:test:prepare
 ```
 
-#### 8. Start rails server
+#### 3. Start rails server
 
 ```bash
 bin/rails s
 ```
 and go to `localhost:3000`. You should see the login page.
 
-#### Run Test Cases
+#### 4. Run Test Cases
 Default: Run all spec files (i.e., those matching spec/**/*_spec.rb)
 ```bash
 $ bundle exec rspec
@@ -56,7 +56,7 @@ $ bundle exec rspec spec/models
 ```
 Use user details like username(i.e email) and password from seed file or You can sign up and use those credential to login
 
-#### To get the places which have been shared publically
+#### 5. To get the places which have been shared publically
 Note: username is email only.
 ```bash
 $ http://localhost:3000/user1@example.com
