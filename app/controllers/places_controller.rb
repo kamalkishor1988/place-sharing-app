@@ -6,11 +6,11 @@ class PlacesController < ApplicationController
   end
 
   def new
-  	@place = Place.new
+    @place = Place.new
   end
 
   def create
-  	@place = Place.new(place_params)
+    @place = Place.new(place_params)
     if @place.save
       flash[:success] = "Place added!"
       redirect_to places_path
@@ -20,19 +20,19 @@ class PlacesController < ApplicationController
   end
 
   def show
-  	@place = Place.find(params[:id])
+    @place = Place.find(params[:id])
   end
 
   def public_share
-  	@username = params[:username]
-  	begin
-  	 user = User.find_by!(email: @username)
-     @places = user.places.where.not(longitude: nil, latitude: nil, public: false)
-     @place_coordinates = find_coordinates(@places)
-	  rescue ActiveRecord::RecordNotFound
-	    redirect_to root_path
-	    return
-	  end
+    @username = params[:username]
+    begin
+      user = User.find_by!(email: @username)
+      @places = user.places.where.not(longitude: nil, latitude: nil, public: false)
+      @place_coordinates = find_coordinates(@places)
+    rescue ActiveRecord::RecordNotFound
+      redirect_to root_path
+      return
+    end
   end
 
   private
