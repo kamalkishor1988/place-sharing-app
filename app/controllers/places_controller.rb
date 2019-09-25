@@ -31,15 +31,15 @@ class PlacesController < ApplicationController
   def public_share
   	@username = params[:username]
   	begin
-	 user = User.find_by!(email: @username)
-     @places = user.places.select { |place| place.public == true }
-     @place_coordinates = @places.select {
-  	  |x| x.longitude.present? && x.latitude.present?
-  	 }.map{|y| [y.longitude, y.latitude]}
-	rescue ActiveRecord::RecordNotFound
-	 redirect_to root_path
-	 return
-	end
+  	 user = User.find_by!(email: @username)
+       @places = user.places.select { |place| place.public == true }
+       @place_coordinates = @places.select {
+    	  |x| x.longitude.present? && x.latitude.present?
+    	 }.map{|y| [y.longitude, y.latitude]}
+	  rescue ActiveRecord::RecordNotFound
+	    redirect_to root_path
+	    return
+	  end
   end
 
   private
