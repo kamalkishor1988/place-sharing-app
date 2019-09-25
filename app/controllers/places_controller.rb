@@ -32,10 +32,8 @@ class PlacesController < ApplicationController
   	@username = params[:username]
   	begin
   	 user = User.find_by!(email: @username)
-       @places = user.places.select { |place| place.public == true }
-       @place_coordinates = @places.select {
-    	  |x| x.longitude.present? && x.latitude.present?
-    	 }.map{|y| [y.longitude, y.latitude]}
+     @places = user.places.where.not(longitude: nil, latitude: nil, public: false)
+     @place_coordinates = @places.pluck(:longitude, :latitude)
 	  rescue ActiveRecord::RecordNotFound
 	    redirect_to root_path
 	    return
