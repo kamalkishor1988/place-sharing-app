@@ -1,13 +1,8 @@
 class PlacesController < ApplicationController
   skip_before_action :authenticate_user!, only: :public_share
   def index
-  	places = Place.order('created_at DESC')
-  	@places = ( places.select {
-  	 |place| place.shared_ids.include? current_user.id.to_s
-  	} << current_user.places ).flatten.uniq
-  	@place_coordinates = @places.select {
-  		|x| x.longitude.present? && x.latitude.present?
-  	}.map{|y| [y.longitude, y.latitude]}
+    @places = Place.where(":shared_id = ANY(shared_ids)", shared_id: current_user.id.to_s) + current_user.places
+    @place_coordinates = find_coordinates(@places.select{ |place| place[:latitude].present? && place[:longitude].present? })
   end
 
   def new
@@ -33,7 +28,7 @@ class PlacesController < ApplicationController
   	begin
   	 user = User.find_by!(email: @username)
      @places = user.places.where.not(longitude: nil, latitude: nil, public: false)
-     @place_coordinates = @places.pluck(:longitude, :latitude)
+     @place_coordinates = find_coordinates(@places)
 	  rescue ActiveRecord::RecordNotFound
 	    redirect_to root_path
 	    return
@@ -41,6 +36,10 @@ class PlacesController < ApplicationController
   end
 
   private
+
+  def find_coordinates(places)
+    places.pluck(:longitude, :latitude)
+  end
 
   def place_params
     params.require(:place).permit(:title, :address, :user_id, :public, shared_ids: [])
