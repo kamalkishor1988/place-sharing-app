@@ -1,65 +1,3 @@
-<script type="text/javascript">
-  var map = new ol.Map({
-    target: 'map',
-	layers: [
-	  new ol.layer.Tile({
-	    source: new ol.source.OSM()
-	  })
-	],
-	view: new ol.View({
-	  center: ol.proj.fromLonLat([-74.006,40.712]),
-	  zoom: 2
-	})
-  });
-
-  var place_coordinates = <%= @place_coordinates %>;
-  for(var i=0; i<place_coordinates.length; i++){
-
-	  var marker = new ol.Feature({
-	    geometry: new ol.geom.Point(
-	      ol.proj.fromLonLat(place_coordinates[i])
-	    ),
-	  });
-
-	  var style1 = [
-	    new ol.style.Style({
-	        image: new ol.style.Icon(({
-	            scale: 0.7,
-	            rotateWithView: false,
-	            anchor: [0.5, 1],
-	            anchorXUnits: 'fraction',
-	            anchorYUnits: 'fraction',
-	            opacity: 1,
-	            src: 'https://raw.githubusercontent.com/jonataswalker/map-utils/master/images/marker.png'
-	        })),
-	        zIndex: 5
-	    }),
-	    new ol.style.Style({
-	        image: new ol.style.Circle({
-	            radius: 5,
-	            fill: new ol.style.Fill({
-	                color: 'rgba(255,255,255,1)'
-	            }),
-	            stroke: new ol.style.Stroke({
-	                color: 'rgba(0,0,0,1)'
-	            })
-	        })
-	    })
-      ];
-
-      marker.setStyle(style1);
-
-	  var vectorSource = new ol.source.Vector({
-	    features: [marker]
-	  });
-
-	  var markerVectorLayer = new ol.layer.Vector({
-	    source: vectorSource,
-	  });
-
-	  map.addLayer(markerVectorLayer);
-  }
-</script>
 <header><br /><p class="lead">Places</p></header>
 
 <%= link_to 'Share place', new_place_path, class: 'btn btn-primary btn-lg' %>
@@ -71,4 +9,11 @@
     </ul>
   </div>
   <div id="map" class="map"></div>
+  <div id="popup" class="ol-popup">
+    <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+    <div id="popup-content"></div>
+  </div>
 </div>
+<script>
+  <%= render 'place.js', locals: { place_coordinates: @place_coordinates } %>
+</script>
